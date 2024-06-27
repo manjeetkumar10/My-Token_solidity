@@ -2,37 +2,25 @@
 pragma solidity 0.8.18;
 
 contract MyToken {
-    string public name;            // Token Name
-    string public symbol;          // Token Abbrv.
-    uint256 public totalSupply;    // Total Supply
 
-    mapping(address => uint256) public balances;
+    // public variables here
+    string public tokenName = "cryptocoin";
+    string public tokenAbbrv = "CC";
+    uint public totalsupply = 0;
 
-    event Mint(address indexed to, uint256 value);
-    event Burn(address indexed from, uint256 value);
+    // Mapping to track the token balance of each address
+    mapping(address => uint) public tokenBalances;
 
-    constructor() {
-        name = "cryptocoin";           // Example Token Name
-        symbol = "CC";              // Example Token Abbreviation
-        totalSupply = 0;      // Example Initial Supply
-        balances[msg.sender] = totalSupply;
+    // Function to mint new tokens and assign them to a specified address
+    function mint(address recipient, uint amount) public {
+        totalsupply += amount;
+        tokenBalances[recipient] += amount;
     }
 
-    function mint(address _to, uint256 _value) public {
-        require(_value > 0, "Invalid mint value");
-        
-        totalSupply += _value;
-        balances[_to] += _value;
-        emit Mint(_to, _value);
-    }
-
-    function burn(uint256 _value) public {
-        require(_value > 0, "Invalid burn value");
-        require(balances[msg.sender] >= _value, "Insufficient balance");
-
-        totalSupply -= _value;
-        balances[msg.sender] -= _value;
-        emit Burn(msg.sender, _value);
-    }
+    // Function to burn tokens from a specified address, reducing the total supply
+    function burn(address account, uint amount) public {
+        require(tokenBalances[account] >= amount, "Not enough tokens to burn");
+        totalsupply -= amount;
+        tokenBalances[account] -=amount;
+ }
 }
-
