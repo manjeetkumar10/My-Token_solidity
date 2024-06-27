@@ -14,7 +14,7 @@ contract MyToken {
     constructor() {
         name = "cryptocoin";           // Example Token Name
         symbol = "CC";              // Example Token Abbreviation
-        totalSupply = 1000000;      // Example Initial Supply
+        totalSupply = 0;      // Example Initial Supply
         balances[msg.sender] = totalSupply;
     }
 
