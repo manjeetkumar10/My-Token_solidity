@@ -6,7 +6,7 @@ MyToken is a simple ERC20-compatible token smart contract written in Solidity. I
 ### Token Details
 - **Name:** cryptocoin
 - **Symbol:** CC
-- **Total Supply:** 1,000,000 CC
+- **Total Supply:** 0
 
 ## Features
 - **Minting:** Allows the contract owner to mint new tokens and allocate them to a specified address.
